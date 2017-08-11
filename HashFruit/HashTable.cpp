@@ -15,46 +15,11 @@ HashTable::HashTable()
 	}
 }
 
-//void HashTable::insert(HashNode& Node)
-//{
-//	bool alreadyThere = false;
-//	int index;
-//	//if key < 0 then stop
-//	if (Node.key < 0)
-//	{
-//		return;
-//	}
-//	//std::cout << "BOOL" <<alreadyThere << std::endl;
-//	findIndex(Node.key, alreadyThere, index);
-//	//std::cout << alreadyThere << std::endl;
-//	if (!alreadyThere)
-//	{
-//		if (size() < TABLESIZE)
-//		used++;
-//		if (size() > TABLESIZE)
-//		{
-//			std::cout << "No more room" << std::endl;
-//			return;
-//		}
-//		//check to see if used is >= half the table size
-//		if (used >= (TABLESIZE/2))
-//		{
-//			rehash();
-//		}
-//		htable[index] = Node;
-//		htable[index].removed = 0;
-//	}
-//}
-
-
-void HashTable::insert(int key, std::string fruit)
+void HashTable::insert(HashNode& Node)
 {
-	HashNode Node;
-	Node.key = key;
-	Node.fruit = fruit;
-
 	bool alreadyThere = false;
 	int index;
+
 	//if key < 0 then stop
 	if (Node.key < 0)
 	{
@@ -66,39 +31,37 @@ void HashTable::insert(int key, std::string fruit)
 	if (!alreadyThere)
 	{
 		if (size() < TABLESIZE)
-			used++;
+		used++;
 		if (size() > TABLESIZE)
 		{
 			std::cout << "No more room" << std::endl;
 			return;
 		}
 		//check to see if used is >= half the table size
+		if (used >= (TABLESIZE/2))
+		{
+			rehash();
+		}
 		htable[index] = Node;
 		htable[index].removed = 0;
 	}
+	
+	
+}
 
+void HashTable::rehash()
+{
+	const int newTableSize = TABLESIZE * 2;
+	HashNode newHTable[newTableSize];
+	for (int i = 0; i < TABLESIZE; i++)
+	{
+
+	}
 
 }
 
-//void HashTable::remove(HashNode& Node)
-//{
-//	bool alreadyThere = false;
-//	int index;
-//	if (Node.key < 0)
-//	{
-//		return;
-//	}
-//	findIndex(Node.key, alreadyThere, index);
-//	if (alreadyThere)
-//	{
-//		htable[index].removed = 1;
-//	}
-//}
-
-void HashTable::remove(int key)
+void HashTable::remove(HashNode& Node)
 {
-	HashNode Node;
-	Node.key = key;
 	bool alreadyThere = false;
 	int index;
 	if (Node.key < 0)
@@ -111,6 +74,7 @@ void HashTable::remove(int key)
 		htable[index].removed = 1;
 	}
 }
+
 
 //void HashTable::insert2(int key, std::string fruit)
 //{

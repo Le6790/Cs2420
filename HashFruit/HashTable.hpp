@@ -16,22 +16,20 @@ struct HashNode
 //public:
 //	int key;
 //	std::string fruit;
-//	int removed;
-//	Node(int key, std::string fruit, int removed) :
+//	Node(int key, std::string fruit) :
 //		key(key),
-//		fruit(fruit),
-//		removed(removed)
+//		fruit(fruit)
 //	{}
 //};
 class HashTable
 {
 public:
 	HashTable();
-	//void insert(HashNode& node); //const
-	//void remove(HashNode& node);
-	void insert(int key, std::string fruit);
-	void remove(int key);
-	
+	void insert(HashNode& node); //const
+	void remove(HashNode& node);
+	//void insert2(int key, std::string fruit);
+
+	void rehash();
 
 	void findIndex(int key, bool& found, int& i); //const
 	void find(int key, bool& found, HashNode& result);// const outside
