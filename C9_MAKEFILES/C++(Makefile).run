@@ -1,0 +1,20 @@
+// This file overrides the built-in C++ (simple) runner
+// For more information see http://docs.c9.io:8080/#!/api/run-method-run
+{
+  "script": [
+    "set -e",
+    "if [ \"$debug\" == true ]; then ",
+    "make -f $file_path/Makefile debug",
+    "node $HOME/.c9/bin/c9gdbshim.js \"$file_path/a.out\" $args",
+    "./a.out",
+    "else",
+    "make -f $file_path/Makefile",
+    "./a.out",
+    "fi"
+  ],
+  "info": "Running $file",
+  "debugger": "gdb",
+  "$debugDefaultState": false,
+  "env": {},
+  "selector": "a.out"
+}

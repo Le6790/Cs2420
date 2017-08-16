@@ -1,0 +1,20 @@
+// This file overrides the built-in C++ (simple) runner
+// For more information see http://docs.c9.io:8080/#!/api/run-method-run
+{
+  "script": [
+    "set -e",
+    "if [ \"$debug\" == true ]; then ",
+    "/usr/bin/g++ -ggdb3 -std=c++11 *cpp -o a.out",
+    "./a.out",
+    "node $HOME/.c9/bin/c9gdbshim.js \"$file_path/a.out\" $args",
+    "else",
+    "/usr/bin/g++ -std=c++11 *cpp -o a.out",
+    "./a.out",
+    "fi"
+  ],
+  "info": "Running $file",
+  "debugger": "gdb",
+  "$debugDefaultState": false,
+  "env": {},
+  "selector": "^.*\\.(cpp|cc)$"
+}
